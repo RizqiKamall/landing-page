@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover the future of finance with our crypto platform">
+  <title>CryptoNiche - The Future of Digital Assets</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      position: relative;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    header video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -2;
+      transform: translate(-50%, -50%);
+      filter: brightness(0.4);
+    }
+    .gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(15, 32, 39, 0.7), rgba(32, 58, 67, 0.6), rgba(44, 83, 100, 0.7));
+      z-index: -1;
+      animation: gradientShift 8s ease infinite alternate;
+    }
+    @keyframes gradientShift {
+      0% {
+        background: linear-gradient(120deg, rgba(15, 32, 39, 0.7), rgba(32, 58, 67, 0.6), rgba(44, 83, 100, 0.7));
+      }
+      100% {
+        background: linear-gradient(120deg, rgba(44, 83, 100, 0.7), rgba(32, 58, 67, 0.6), rgba(15, 32, 39, 0.7));
+      }
+    }
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+      animation: fadeDown 1s ease-out;
+    }
+    header p {
+      font-size: 1.4rem;
+      margin-top: 15px;
+      color: #ddd;
+      animation: fadeUp 1.2s ease-out;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 15px 35px;
+      background: #ff9800;
+      color: #000;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      background: #ffc107;
+      transform: scale(1.05);
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    section.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .feature-box {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+    .signup-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 15px;
+    }
+    .signup-form input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+    }
+    .wallet-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #29b6f6;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .wallet-btn:hover {
+      background: #4fc3f7;
+    }
+    .testimonials {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .testimonial {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      font-style: italic;
+      position: relative;
+    }
+    .testimonial::before {
+      content: "\201C";
+      font-size: 3rem;
+      color: #ff9800;
+      position: absolute;
+      top: -10px;
+      left: 10px;
+    }
+    .roadmap {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: left;
+    }
+    .roadmap-step {
+      background: #1a1a1a;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #ff9800;
+    }
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    @keyframes fadeDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Background Video -->
+    <video autoplay muted loop>
+      <source src="https://cdn.coverr.co/videos/coverr-crypto-mining-6234/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="gradient-overlay"></div>
+
+    <h1>CryptoNiche</h1>
+    <p>Empowering the Future of Digital Finance</p>
+    <a href="#signup" class="cta-button">Get Started Now</a>
+  </header>
+
+  <section>
+    <h2>Why Choose CryptoNiche?</h2>
+    <div class="features">
+      <div class="feature-box">
+        <h3>Secure Transactions</h3>
+        <p>Our platform uses top-notch security protocols to keep your assets safe.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Low Fees</h3>
+        <p>Enjoy minimal fees while trading and transferring digital assets.</p>
+      </div>
+      <div class="feature-box">
+        <h3>24/7 Support</h3>
+        <p>Our support team is available anytime to assist you with your needs.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Fast Transactions</h3>
+        <p>Experience lightning-fast transactions with cutting-edge blockchain tech.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Our Users Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">“CryptoNiche has made trading so simple and secure. Highly recommended!”<br><strong>- Alice, Investor</strong></div>
+      <div class="testimonial">“The low fees and fast transactions are a game changer for me.”<br><strong>- John, Trader</strong></div>
+      <div class="testimonial">“I love the user-friendly interface and 24/7 support!”<br><strong>- Maria, Enthusiast</strong></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Roadmap</h2>
+    <div class="roadmap">
+      <div class="roadmap-step"><strong>Q3 2025:</strong> Launch of CryptoNiche Wallet with enhanced security</div>
+      <div class="roadmap-step"><strong>Q4 2025:</strong> Integration of NFT Marketplace</div>
+      <div class="roadmap-step"><strong>Q1 2026:</strong> Decentralized Finance (DeFi) lending platform</div>
+      <div class="roadmap-step"><strong>Q2 2026:</strong> Global CryptoNiche community expansion</div>
+    </div>
+  </section>
+
+  <section id="signup">
+    <h2>Join the Future Today</h2>
+    <p>Sign up now and start your journey into the crypto world.</p>
+    <div class="signup-form">
+      <form id="emailSignup">
+        <input type="email" placeholder="Enter your email" required>
+        <button class="cta-button" type="submit">Subscribe</button>
+      </form>
+      <button class="wallet-btn" id="connectWallet">Connect Wallet</button>
+    </div>
+    <p id="walletAddress"></p>
+  </section>
+
+  <footer>
+    &copy; 2025 CryptoNiche. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('emailSignup').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thanks for subscribing!');
+    });
+
+    // Web3 Wallet Connect
+    const connectWalletBtn = document.getElementById('connectWallet');
+    const walletAddressEl = document.getElementById('walletAddress');
+    connectWalletBtn.addEventListener('click', async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          walletAddressEl.textContent = `Connected Wallet: ${accounts[0]}`;
+        } catch (error) {
+          console.error(error);
+          alert('Wallet connection failed.');
+        }
+      } else {
+        alert('Please install MetaMask or another Web3 wallet!');
+      }
+    });
+
+    // Scroll reveal animation
+    const sections = document.querySelectorAll('section');
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+          section.classList.add('reveal');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>
